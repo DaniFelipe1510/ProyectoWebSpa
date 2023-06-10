@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout-Login.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 text-center mb-5">
+        <h2 class="heading-section">Login</h2>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="login-wrap p-0">
+            <h3 class="mb-4 text-center">Tienes una cuenta?</h3>
+            <form action="#" class="signin-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Correo Electrónico" required>
+                </div>
+                <div class="form-group">
+                    <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required>
+                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="form-control btn btn-primary submit px-3">Iniciar Sesión</button>
+                </div>
+                <div class="form-group d-md-flex">
+                    <div class="w-50">
+                        <label class="checkbox-wrap checkbox-primary">
+                             Acordarme de mi
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="w-50 text-md-right">
+                        <a href="#" style="color: #fff">Has olvidado tu contraseña</a>
+                    </div>
+                      
+                </div>
+            </form>
+            <div class="social d-flex text-center">
+                <a href="@Url.Action("Registro","Home")" class="px-2 py-2 mr-md-1 rounded">Registrarse <i class="fa fa-share"></i></a>                
+            </div>
+        </div>
+    </div>
+</div>
+
