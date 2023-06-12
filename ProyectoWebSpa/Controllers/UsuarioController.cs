@@ -9,7 +9,13 @@ namespace ProyectoWebSpa.Controllers
 {
     public class UsuarioController : ApiController
     {
-        
+        //Todos los select tipo httpget
+        [HttpGet]
+        public void IniciarSesion(Usuario)
+
+        //Insert
+        [HttpPost]
+
 
     }
 }
