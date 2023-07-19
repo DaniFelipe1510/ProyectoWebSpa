@@ -7,7 +7,7 @@ namespace ProyectoWebSpa.Entities
 {
     public class UsuarioEnt
     {
-
+        public long IdUsuario { get; set; }
         public string Identificacion { get; set; }
         public string Nombre { get; set; }
         public string CorreoElectronico { get; set; }
