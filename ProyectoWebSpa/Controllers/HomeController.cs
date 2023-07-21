@@ -18,6 +18,11 @@ namespace ProyectoWebSpa.Controllers
             return View();
         }
         [HttpGet]
+        public ActionResult Inicio()
+        {
+            return View();
+        }
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
