@@ -1,36 +1,51 @@
-﻿
+﻿@model ProyectoWebSpa.Entities.UsuarioEnt
+
 @{
     ViewBag.Title = "Registro";
     Layout = "~/Views/Shared/_Layout-Login.cshtml";
 }
 
-<div class="row justify-content-center">
-    <div class="col-md-6 text-center mb-5">
-        <h2 class="heading-section">Login</h2>
+@using (Html.BeginForm("RegistrarUsuario", "Home", FormMethod.Post))
+{
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">Login</h2>
+        </div>
     </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-md-6 col-lg-4">
-        <div class="login-wrap p-0">
-            <h3 class="mb-4 text-center">Deseas crear una cuenta?</h3>
-            <form action="#" class="signin-form">
-                <div class="form-group d-md-flex">
-                    <div class="w-50">
-                        <input type="text" class="form-control" placeholder="Identificación" required>
+   
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="login-wrap p-0">
+                <h3 class="mb-4 text-center">Deseas crear una cuenta?</h3>
+                @if (@ViewBag.MsjPantalla != null)
+                {
+                    <div style="text-align:center" class="alert alert-warning" role="alert">
+                        @ViewBag.MsjPantalla
                     </div>
-                    <div class="w-50">
-                        <input type="text" class="form-control" placeholder="Nombre" required>
+                }
+                <form action="#" class="signin-form">
+                    <div class="form-group d-md-flex">
+                        <div class="w-50">
+                            @Html.TextBoxFor(m => m.Identificacion, new { @type = "text", @placeholder = "Identificación", @class = "form-control" })
+
+                        </div>
+                        <div class="w-50">
+                            @Html.TextBoxFor(m => m.Nombre, new { @type = "text", @placeholder = "Nombre", @class = "form-control" })
+
+                        </div>
                     </div>
-                </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Correo Electrónico" required>
+                        @Html.TextBoxFor(m => m.Correo, new { @type = "email", @placeholder = "Correo Electrónico", @class = "form-control" })
+
                     </div>
-                    <div class="form-group" >
-                        <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Contrasenna, new { @type = "password", @placeholder = "Contraseña", @class = "form-control" })
+
                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     </div>
                     <div class="form-group">
-                        <input id="password-field" type="password" class="form-control" placeholder="Confirmar Contraseña" required>
+                        @Html.TextBoxFor(m => m.Confirmarcontrasenna, new { @type = "password", @placeholder = "ConfirmarContraseña", @class = "form-control" })
+
                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     </div>
                     <div class="form-group">
@@ -46,11 +61,12 @@
                         </div>
 
                     </div>
-</form>
-            <div class="social d-flex text-center">
-                <a href="@Url.Action("Login","Home")" class="px-2 py-2 mr-md-1 rounded">Inicio Sesión<i class="fa fa-reply"></i></a>
+                </form>
+                <div class="social d-flex text-center">
+                    <a href="@Url.Action("Login", "Home")" class="px-2 py-2 mr-md-1 rounded">Inicio Sesión<i class="fa fa-reply"></i></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
 

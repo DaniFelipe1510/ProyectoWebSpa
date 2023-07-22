@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -13,7 +14,7 @@ namespace ProyectoWebSpa.Models
 {
     public class UsuarioModel
     {
-        /*
+        
         public UsuarioEnt IniciarSesion(UsuarioEnt entidad)
         {
             using (var client = new HttpClient())
@@ -32,7 +33,9 @@ namespace ProyectoWebSpa.Models
             }
 
         }
-    }
+    
+
+    
 
     public int RegistrarUsuario(UsuarioEnt entidad)
     {
@@ -52,7 +55,7 @@ namespace ProyectoWebSpa.Models
             return 0;
         }
     }
-
+    /*
     public bool RecuperarContrasenna(UsuarioEnt entidad)
     {
         using (var client = new HttpClient())
@@ -71,7 +74,7 @@ namespace ProyectoWebSpa.Models
             return false;
         }
     }
-
+    */
     public string Encrypt(string toEncrypt)
     {
         byte[] keyArray;
@@ -94,6 +97,6 @@ namespace ProyectoWebSpa.Models
         tdes.Clear();
         return Convert.ToBase64String(resultArray, 0, resultArray.Length);
     }
-        */
+        
     }
 }

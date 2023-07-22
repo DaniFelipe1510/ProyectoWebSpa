@@ -1,31 +1,16 @@
 ﻿using ProyectoWebSpa.Entities;
+using ProyectoWebSpa.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using ProyectoWebSpa.Entities;
-using ProyectoWebSpa.Models;
+using System.Web;
+using System.Web.Mvc;
 
 namespace ProyectoWebSpa.Controllers
 {
-    public class UsuarioController : ApiController
+    public class UsuarioController : Controller
     {
         UsuarioModel model = new UsuarioModel();
-        //Todos los select tipo httpget
-        [HttpGet]
-        public void IniciarSesion(UsuarioEnt entidad)
-        { 
-
-        }
-
-        //Insert
-        [HttpPost]
-        public void RegistrarUsuario(UsuarioEnt entidad)
-        { 
-        }
-
-
+        
     }
 }

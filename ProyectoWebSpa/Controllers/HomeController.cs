@@ -46,7 +46,7 @@ namespace ProyectoWebSpa.Controllers
 
             return View();
         }
-        /*
+
         [HttpPost]
         public ActionResult IniciarSesion(UsuarioEnt entidad)
         {
@@ -57,7 +57,7 @@ namespace ProyectoWebSpa.Controllers
 
                 if (resp != null)
                 {
-                    Session["CorreoUsuario"] = resp.CorreoElectronico;
+                    Session["CorreoUsuario"] = resp.Correo;
                     Session["IdUsuario"] = resp.IdUsuario.ToString();
                     Session["NombreUsuario"] = resp.Nombre;
                     Session["RolUsuario"] = resp.NombreRol;
@@ -73,12 +73,14 @@ namespace ProyectoWebSpa.Controllers
             }
 
         }
+
+        [HttpPost]
         public ActionResult RegistrarUsuario(UsuarioEnt entidad)
         {
             try
             {
                 entidad.Contrasenna = model.Encrypt(entidad.Contrasenna);
-                entidad.IdRol = 2;
+                entidad.Rol = 2;
                 entidad.Estado = true;
 
                 var resp = model.RegistrarUsuario(entidad);
@@ -96,6 +98,7 @@ namespace ProyectoWebSpa.Controllers
                 return View("Error");
             }
         }
+        /*
 
         [HttpPost]
         public ActionResult RecuperarContrasenna(UsuarioEnt entidad)
@@ -119,18 +122,13 @@ namespace ProyectoWebSpa.Controllers
 
         }
         */
-        public ActionResult About()
+
+        [HttpGet]
+        public ActionResult CerrarSesion()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            Session.Clear();
+            return RedirectToAction("Login", "Home");
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+      
     }
 }
