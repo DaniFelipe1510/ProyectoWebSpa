@@ -11,6 +11,8 @@ namespace ProyectoWebSpa.Controllers
     public class HomeController : Controller
     {
         UsuarioModel model = new UsuarioModel();
+        ProductoModel modelCursos = new ProductoModel();
+        CarritoModel modelCarrito = new CarritoModel();
 
         [HttpGet]
         public ActionResult Index()
@@ -20,7 +22,8 @@ namespace ProyectoWebSpa.Controllers
         [HttpGet]
         public ActionResult Inicio()
         {
-            return View();
+            var datos = modelCursos.ConsultarCursos();
+            return View(datos);
         }
         [HttpGet]
         public ActionResult Login()
@@ -61,7 +64,12 @@ namespace ProyectoWebSpa.Controllers
                     Session["IdUsuario"] = resp.IdUsuario.ToString();
                     Session["NombreUsuario"] = resp.Nombre;
                     Session["RolUsuario"] = resp.NombreRol;
-                    return RedirectToAction("Index", "Home");
+                    Session["IdRolUsuario"] = resp.Rol;
+
+                    var datos = modelCarrito.ConsultarCursoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+                    Session["CantidadCursos"] = datos.Count();
+                    Session["SubTotalCursos"] = datos.Sum(x => x.Precio);
+                    return RedirectToAction("Inicio", "Home");
                 }
                 else
                     ViewBag.MsjPantalla = "No se ha podido validar su información";

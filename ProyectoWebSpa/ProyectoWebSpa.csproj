@@ -166,13 +166,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ReservaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Entities\CarritoEnt.cs" />
+    <Compile Include="Entities\ProductoEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CarritoModel.cs" />
+    <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -185,6 +191,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\crema1.jpg" />
+    <Content Include="images\crema2.jpg" />
+    <Content Include="images\esencia1.jpg" />
+    <Content Include="images\esencia2.jpg" />
+    <Content Include="images\esencia3.jpg" />
+    <Content Include="images\exfoliante1.jpg" />
+    <Content Include="images\exfoliante2.jpg" />
+    <Content Include="images\exfoliante3.jpg" />
+    <Content Include="images\jabon1.jpg" />
+    <Content Include="images\jabon2.jpg" />
+    <Content Include="images\pano1.jpg" />
+    <Content Include="images\pano2.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="WebStyles\assets\favicon.ico" />
@@ -276,6 +294,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Carrito\" />
+    <Folder Include="Views\Producto\" />
     <Folder Include="Views\Reserva\" />
     <Folder Include="Views\Usuario\" />
   </ItemGroup>
