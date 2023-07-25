@@ -55,7 +55,7 @@ namespace ProyectoWebSpa.Models
             return 0;
         }
     }
-    /*
+    
     public bool RecuperarContrasenna(UsuarioEnt entidad)
     {
         using (var client = new HttpClient())
@@ -74,7 +74,7 @@ namespace ProyectoWebSpa.Models
             return false;
         }
     }
-    */
+    
     public string Encrypt(string toEncrypt)
     {
         byte[] keyArray;

@@ -87,9 +87,9 @@ namespace ProyectoWebSpa.Controllers
         {
             try
             {
-                entidad.Contrasenna = model.Encrypt(entidad.Contrasenna);
-                entidad.Rol = 2;
-                entidad.Estado = true;
+                //entidad.Contrasenna = model.Encrypt(entidad.Contrasenna);
+                //entidad.Rol = 2;
+                //entidad.Estado = true;
 
                 var resp = model.RegistrarUsuario(entidad);
 
@@ -106,7 +106,7 @@ namespace ProyectoWebSpa.Controllers
                 return View("Error");
             }
         }
-        /*
+
 
         [HttpPost]
         public ActionResult RecuperarContrasenna(UsuarioEnt entidad)
@@ -129,7 +129,6 @@ namespace ProyectoWebSpa.Controllers
             }
 
         }
-        */
 
         [HttpGet]
         public ActionResult CerrarSesion()
