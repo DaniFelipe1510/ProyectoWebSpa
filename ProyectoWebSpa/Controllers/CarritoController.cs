@@ -18,7 +18,7 @@ namespace ProyectoWebSpa.Controllers
             CarritoEnt entidad = new CarritoEnt();
             entidad.FechaCarrito = DateTime.Now;
             entidad.IdProducto = q;
-            entidad.IdUsuario = 1;//long.Parse(Session["IdUsuario"].ToString());
+            entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
             model.AgregarCursoCarrito(entidad);
 
             var datos = model.ConsultarCursoCarrito(long.Parse(Session["IdUsuario"].ToString()));

@@ -7,6 +7,12 @@
 
 <h2 style="font-weight:bold; text-align:center;">Sección para comprar productos.</h2>
 
+<button class="btn btn-sm order-1 order-lg-0 me-4 me-lg-0" style="color:black">
+    &nbsp;&nbsp;
+    <i class="fa fa-cart-plus fa-lg"></i> @Session["CantidadCursos"].ToString() &nbsp;&nbsp;
+    <i class="fa fa-comments-dollar fa-lg"></i> @Session["SubTotalCursos"].ToString()
+</button>
+
 <div class="row" style="margin-top:80px;">
     @foreach (var item in Model)
     {

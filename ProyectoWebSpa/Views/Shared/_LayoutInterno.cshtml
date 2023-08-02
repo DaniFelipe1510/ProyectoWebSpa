@@ -33,6 +33,11 @@
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("Perfil","Home")">Perfil</a></li>
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("CerrarSesion","Home")">Cerrar Sesión</a></li>
                 </ul>
+                <button class="btn btn-sm order-1 order-lg-0 me-4 me-lg-0" style="color:black">
+                    &nbsp;&nbsp;
+                    <i class="fa fa-cart-plus fa-lg"></i> @Session["CantidadCursos"].ToString() &nbsp;&nbsp;
+                    <i class="fa fa-comments-dollar fa-lg"></i> @Session["SubTotalCursos"].ToString()
+                </button>
             </div>
         </div>
     </nav>
@@ -48,6 +53,9 @@
     <footer class="footer py-4">
         <div class="container">
             <div class="row align-items-center">
+                @Session["NombreUsuario"].ToString()
+                <br>
+                @Session["RolUsuario"].ToString()
                 <div class="col-lg-4 text-lg-start">Copyright &copy; Spa Beesthetic</div>
                 <div class="col-lg-4 my-3 my-lg-0">
                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
