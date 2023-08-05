@@ -13,6 +13,8 @@ namespace ProyectoWebSpa.Entities
         public decimal Precio { get; set; }
         public DateTime FechaCarrito { get; set; }
 
+        public string Nombre { get; set; }
+
 
     }
 }

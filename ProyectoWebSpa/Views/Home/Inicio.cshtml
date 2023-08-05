@@ -8,8 +8,16 @@
 <h2 style="font-weight:bold; text-align:center;">Sección para comprar productos.</h2>
 
 <div class="row" style="margin-top:80px;">
+    @if (ViewBag.MsjPantalla != null)
+    {
+        <div style="text-align:center" class="alert alert-warning" role="alert">
+            @ViewBag.MsjPantalla
+        </div>
+    }
+
     @foreach (var item in Model)
     {
+
         <div class="col-lg-3">
             <div class="card" style="width: 100%;">
 
