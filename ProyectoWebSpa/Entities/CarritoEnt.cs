@@ -11,6 +11,7 @@ namespace ProyectoWebSpa.Entities
         public long IdUsuario { get; set; }
         public long IdProducto { get; set; }
         public decimal Precio { get; set; }
+        public decimal CantidadArticulos { get; set; }
         public DateTime FechaCarrito { get; set; }
 
         public string Nombre { get; set; }

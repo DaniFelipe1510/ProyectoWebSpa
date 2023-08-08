@@ -20,11 +20,12 @@ namespace ProyectoWebSpa.Controllers
             entidad.FechaCarrito = DateTime.Now;
             entidad.IdProducto = q;
             entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
+            entidad.CantidadArticulos = 1;
             var respuesta = model.AgregarCursoCarrito(entidad);
 
             var datos = model.ConsultarCursoCarrito(long.Parse(Session["IdUsuario"].ToString()));
             Session["CantidadCursos"] = datos.Count();
-            Session["SubTotalCursos"] = datos.Sum(x => x.Precio);
+            Session["SubTotalCursos"] = datos.Sum(x => x.Precio*x.CantidadArticulos);
 
             //return RedirectToAction("Inicio", "Home");
             if (respuesta > 0)

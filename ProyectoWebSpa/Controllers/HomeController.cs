@@ -68,7 +68,7 @@ namespace ProyectoWebSpa.Controllers
 
                     var datos = modelCarrito.ConsultarCursoCarrito(long.Parse(Session["IdUsuario"].ToString()));
                     Session["CantidadCursos"] = datos.Count();
-                    Session["SubTotalCursos"] = datos.Sum(x => x.Precio);
+                    Session["SubTotalCursos"] = datos.Sum(x => x.Precio * x.CantidadArticulos);
                     return RedirectToAction("Inicio", "Home");
                 }
                 else
