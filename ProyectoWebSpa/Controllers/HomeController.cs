@@ -22,8 +22,12 @@ namespace ProyectoWebSpa.Controllers
         [HttpGet]
         public ActionResult Inicio()
         {
-            var datos = modelCursos.ConsultarCursos();
-            return View(datos);
+            var datos = modelCarrito.ConsultarCursoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            Session["CantidadCursos"] = datos.Count();
+            Session["SubTotalCursos"] = datos.Sum(x => x.Precio * x.CantidadArticulos);
+
+            var productos = modelCursos.ConsultarCursos();
+            return View(productos);
         }
         [HttpGet]
         public ActionResult Login()
@@ -66,9 +70,7 @@ namespace ProyectoWebSpa.Controllers
                     Session["RolUsuario"] = resp.NombreRol;
                     Session["IdRolUsuario"] = resp.Rol;
 
-                    var datos = modelCarrito.ConsultarCursoCarrito(long.Parse(Session["IdUsuario"].ToString()));
-                    Session["CantidadCursos"] = datos.Count();
-                    Session["SubTotalCursos"] = datos.Sum(x => x.Precio * x.CantidadArticulos);
+                    
                     return RedirectToAction("Inicio", "Home");
                 }
                 else

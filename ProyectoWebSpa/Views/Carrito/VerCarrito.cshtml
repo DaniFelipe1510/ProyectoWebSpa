@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ProyectoWebSpa.Entities.CarritoEnt>
+
+@{
+    ViewBag.Title = "VerCarrito";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+<br />
+<br />
+<h2 style="text-align:center">Factura</h2>
+<p style="text-align:center">Nuestros montos ya contemplan el IVA.</pstyle="text-align:center">
+<br />
+<br />
+
+
+<div class="row justify-content-center" style="margin-top:80px;">
+    <div class="col-lg-10">
+
+        @if (ViewBag.MsjPantalla != null)
+        {
+            <div style="text-align:center" class="alert alert-warning" role="alert">
+                @ViewBag.MsjPantalla
+            </div>
+        }
+
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr style="text-align:center">
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Remover</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                        <td>@Math.Round(item.Precio, 2)</td>
+                        <td>@Math.Round(item.CantidadArticulos, 0)</td>
+                        <td style="text-align:center">
+                            <a href="@Url.Action("RemoverCursoCarrito","Carrito", new { q = item.IdCarrito })"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+        <br />
+
+        @using (Html.BeginForm("ConfirmarPago", "Carrito", FormMethod.Post))
+        {
+            <p style="text-align: center; margin-top: 10vh; transform: translateY(-50%);">El monto a cancelar es de: $ @Math.Round(double.Parse(Session["SubTotalCursos"].ToString()), 2) IVI</p>
+            <input style="display: block; margin: 0 auto;"  type="submit" value="Procesar Pago" class="btn btn-success">
+
+        }
+
+    </div>
+</div>

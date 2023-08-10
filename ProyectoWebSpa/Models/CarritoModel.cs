@@ -43,5 +43,22 @@ namespace ProyectoWebSpa.Models
                 return 0;
             }
         }
+
+        public int PagarCursosCarrito(CarritoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/PagarCursosCarrito";
+                JsonContent body = JsonContent.Create(entidad); //Serializar
+                HttpResponseMessage resp = client.PostAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+                }
+
+                return 0;
+            }
+        }
     }
 }

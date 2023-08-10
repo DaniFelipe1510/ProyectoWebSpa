@@ -291,10 +291,10 @@
     <Content Include="Views\Home\Perfil.cshtml" />
     <Content Include="Views\Shared\_LayoutInterno.cshtml" />
     <Content Include="Views\Home\Inicio.cshtml" />
+    <Content Include="Views\Carrito\VerCarrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Carrito\" />
     <Folder Include="Views\Producto\" />
     <Folder Include="Views\Reserva\" />
     <Folder Include="Views\Usuario\" />

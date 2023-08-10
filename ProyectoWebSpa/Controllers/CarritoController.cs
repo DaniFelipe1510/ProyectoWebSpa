@@ -39,5 +39,22 @@ namespace ProyectoWebSpa.Controllers
                 return View("../Home/Inicio", cursos);
             }
         }
+
+        [HttpGet]
+        public ActionResult VerCarrito()
+        {
+            var datos = model.ConsultarCursoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            return View(datos);
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmarPago()
+        {
+            CarritoEnt entidad = new CarritoEnt();
+            entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
+
+            model.PagarCursosCarrito(entidad);
+            return RedirectToAction("Inicio", "Home");
+        }
     }
 }
