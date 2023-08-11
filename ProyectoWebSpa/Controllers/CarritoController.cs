@@ -47,6 +47,13 @@ namespace ProyectoWebSpa.Controllers
             return View(datos);
         }
 
+        [HttpGet]
+        public ActionResult VerMisProductos()
+        {
+            var datos = model.ConsultarProductosUsuario(long.Parse(Session["IdUsuario"].ToString()));
+            return View(datos);
+        }
+
         [HttpPost]
         public ActionResult ConfirmarPago()
         {
@@ -54,7 +61,7 @@ namespace ProyectoWebSpa.Controllers
             entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
 
             model.PagarCursosCarrito(entidad);
-            return RedirectToAction("Inicio", "Home");
+            return RedirectToAction("VerMisProductos", "Carrito");
         }
     }
 }

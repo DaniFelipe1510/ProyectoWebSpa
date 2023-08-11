@@ -27,6 +27,22 @@ namespace ProyectoWebSpa.Models
             }
         }
 
+        public List<CarritoEnt> ConsultarProductosUsuario(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarProductosUsuario?q=" + q;
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<List<CarritoEnt>>().Result;
+                }
+
+                return new List<CarritoEnt>();
+            }
+        }
+
         public int AgregarCursoCarrito(CarritoEnt entidad)
         {
             using (var client = new HttpClient())
