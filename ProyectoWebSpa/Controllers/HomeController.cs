@@ -68,7 +68,7 @@ namespace ProyectoWebSpa.Controllers
                     Session["IdUsuario"] = resp.IdUsuario.ToString();
                     Session["NombreUsuario"] = resp.Nombre;
                     Session["RolUsuario"] = resp.NombreRol;
-                    Session["IdRolUsuario"] = resp.Rol;
+                    Session["IdRolUsuario"] = resp.IdRol;
 
                     
                     return RedirectToAction("Inicio", "Home");
@@ -89,9 +89,9 @@ namespace ProyectoWebSpa.Controllers
         {
             try
             {
-                //entidad.Contrasenna = model.Encrypt(entidad.Contrasenna);
-                //entidad.Rol = 2;
-                //entidad.Estado = true;
+                entidad.Contrasenna = model.Encrypt(entidad.Contrasenna);
+                entidad.IdRol = 2;
+                entidad.Estado = true;
 
                 var resp = model.RegistrarUsuario(entidad);
 
