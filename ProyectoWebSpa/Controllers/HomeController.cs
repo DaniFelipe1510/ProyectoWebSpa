@@ -69,8 +69,8 @@ namespace ProyectoWebSpa.Controllers
                     Session["NombreUsuario"] = resp.Nombre;
                     Session["RolUsuario"] = resp.NombreRol;
                     Session["IdRolUsuario"] = resp.IdRol;
+                    Session["TokenUsuario"] = resp.Token;
 
-                    
                     return RedirectToAction("Inicio", "Home");
                 }
                 else
@@ -136,7 +136,7 @@ namespace ProyectoWebSpa.Controllers
         public ActionResult CerrarSesion()
         {
             Session.Clear();
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("Index", "Home");
         }
       
     }

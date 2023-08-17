@@ -16,6 +16,8 @@ namespace ProyectoWebSpa.Models
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarCursos";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
                 if (resp.IsSuccessStatusCode)

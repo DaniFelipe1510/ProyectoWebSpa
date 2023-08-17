@@ -173,6 +173,7 @@
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Entities\CarritoEnt.cs" />
     <Compile Include="Entities\ProductoEnt.cs" />
+    <Compile Include="Entities\RolEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -276,8 +277,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="WebStyles\login\css\.DS_Store" />
     <Content Include="WebStyles\login\css\bootstrap\.DS_Store" />
@@ -293,12 +292,13 @@
     <Content Include="Views\Home\Inicio.cshtml" />
     <Content Include="Views\Carrito\VerCarrito.cshtml" />
     <Content Include="Views\Carrito\VerMisProductos.cshtml" />
+    <Content Include="Views\Usuario\ConsultarUsuarios.cshtml" />
+    <Content Include="Views\Usuario\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Producto\" />
     <Folder Include="Views\Reserva\" />
-    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

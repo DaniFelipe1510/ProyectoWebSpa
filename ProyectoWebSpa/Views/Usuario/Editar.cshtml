@@ -1,0 +1,53 @@
+﻿@model ProyectoWebSpa.Entities.UsuarioEnt
+
+@{ 
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@using (Html.BeginForm("EditarUsuario", "Usuario", FormMethod.Post))
+{
+
+    <div class="row justify-content-center" style="margin-top:80px;">
+        <div class="col-lg-5">
+
+            <h4 style="text-align:center; color: black">Actualizar Información</h4>
+            <br />
+
+            @if (@ViewBag.MsjPantalla != null)
+            {
+                <div style="text-align:center" class="alert alert-warning" role="alert">
+                    @ViewBag.MsjPantalla
+                </div>
+            }
+            <div class="card-body">
+                @Html.HiddenFor(m => m.IdUsuario)
+                <div class="form-floating mb-3">
+                    @Html.TextBoxFor(m => m.Identificacion, new { @type = "text", @disabled = "true", @placeholder = "Identificación", @class = "form-control" })
+                    <label for="inputFirstName">Identificación</label>
+                </div>
+                <div class="form-floating mb-3">
+                    @Html.TextBoxFor(m => m.Nombre, new { @type = "text", @disabled = "true", @placeholder = "Nombre", @class = "form-control", @readonly = "readonly" })
+                    <label for="inputLastName">Nombre</label>
+                </div>
+                <div class="form-floating mb-3">
+                    @Html.TextBoxFor(m => m.Correo, new { @type = "email", @placeholder = "Correo Electrónico", @class = "form-control" })
+                    <label for="inputEmail">Correo Electrónico</label>
+                </div>
+                <div class="form-floating mb-3">
+                    @Html.DropDownListFor(m => m.IdRol, ViewBag.Combo as List<SelectListItem>, new { @class = "form-control" })
+                    <label for="inputPerfil">Perfil</label>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                    <a class="small"></a>
+                    <button class="btn btn-primary" type="submit">Procesar</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+}
+

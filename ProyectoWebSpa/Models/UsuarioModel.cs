@@ -9,6 +9,7 @@ using System.Net.Http.Json;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Security;
 
 namespace ProyectoWebSpa.Models
 {
@@ -37,7 +38,7 @@ namespace ProyectoWebSpa.Models
 
     
 
-    public int RegistrarUsuario(UsuarioEnt entidad)
+       public int RegistrarUsuario(UsuarioEnt entidad)
     {
         using (var client = new HttpClient())
         {
@@ -55,8 +56,49 @@ namespace ProyectoWebSpa.Models
             return 0;
         }
     }
-    
-    public bool RecuperarContrasenna(UsuarioEnt entidad)
+
+
+        public List<UsuarioEnt> ConsultarUsuarios()
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarUsuarios";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<List<UsuarioEnt>>().Result;
+
+                }
+                return new List<UsuarioEnt>();
+            }
+
+        }
+
+        public int CambiarEstado(UsuarioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/CambiarEstado";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+                JsonContent body = JsonContent.Create(entidad);//Serializar
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.PutAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+
+                }
+
+                return 0;
+            }
+        }
+        public bool RecuperarContrasenna(UsuarioEnt entidad)
     {
         using (var client = new HttpClient())
         {
@@ -74,8 +116,67 @@ namespace ProyectoWebSpa.Models
             return false;
         }
     }
-    
-    public string Encrypt(string toEncrypt)
+        public UsuarioEnt ConsultarUsuario(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarUsuario?q=" + q;
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<UsuarioEnt>().Result;
+
+                }
+                return null;
+            }
+        }
+
+        public List<RolEnt> ConsultarRoles()
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarRoles";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<List<RolEnt>>().Result;
+
+                }
+                return new List<RolEnt>();
+            }
+
+        }
+
+        public int EditarUsuario(UsuarioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/EditarUsuario";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+                JsonContent body = JsonContent.Create(entidad);//Serializar
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.PutAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+
+                }
+
+                return 0;
+            }
+        }
+
+        public string Encrypt(string toEncrypt)
     {
         byte[] keyArray;
         byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(toEncrypt);

@@ -16,6 +16,9 @@ namespace ProyectoWebSpa.Models
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarCursoCarrito?q=" + q;
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
                 if (resp.IsSuccessStatusCode)
@@ -32,6 +35,9 @@ namespace ProyectoWebSpa.Models
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarProductosUsuario?q=" + q;
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
                 if (resp.IsSuccessStatusCode)
@@ -48,7 +54,10 @@ namespace ProyectoWebSpa.Models
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/AgregarCursoCarrito";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
                 JsonContent body = JsonContent.Create(entidad); //Serializar
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                 HttpResponseMessage resp = client.PostAsync(url, body).Result;
 
                 if (resp.IsSuccessStatusCode)
@@ -65,7 +74,10 @@ namespace ProyectoWebSpa.Models
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/PagarCursosCarrito";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
                 JsonContent body = JsonContent.Create(entidad); //Serializar
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                 HttpResponseMessage resp = client.PostAsync(url, body).Result;
 
                 if (resp.IsSuccessStatusCode)
