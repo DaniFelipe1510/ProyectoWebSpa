@@ -294,10 +294,12 @@
     <Content Include="Views\Carrito\VerMisProductos.cshtml" />
     <Content Include="Views\Usuario\ConsultarUsuarios.cshtml" />
     <Content Include="Views\Usuario\Editar.cshtml" />
+    <Content Include="Views\Producto\ConsultarMantProductos.cshtml" />
+    <Content Include="Views\Producto\Editar.cshtml" />
+    <Content Include="Views\Producto\Agregar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Producto\" />
     <Folder Include="Views\Reserva\" />
   </ItemGroup>
   <ItemGroup>

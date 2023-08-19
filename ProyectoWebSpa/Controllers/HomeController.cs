@@ -11,7 +11,7 @@ namespace ProyectoWebSpa.Controllers
     public class HomeController : Controller
     {
         UsuarioModel model = new UsuarioModel();
-        ProductoModel modelCursos = new ProductoModel();
+        ProductoModel modelProductos = new ProductoModel();
         CarritoModel modelCarrito = new CarritoModel();
 
         [HttpGet]
@@ -26,7 +26,7 @@ namespace ProyectoWebSpa.Controllers
             Session["CantidadCursos"] = datos.Count();
             Session["SubTotalCursos"] = datos.Sum(x => x.Precio * x.CantidadArticulos);
 
-            var productos = modelCursos.ConsultarCursos();
+            var productos = modelProductos.ConsultarProductos();
             return View(productos);
         }
         [HttpGet]

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ProyectoWebSpa.Entities.ProductoEnt>
+
+
+@{
+    ViewBag.Title = "ConsultarMantProductos";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+<div class="row justify-content-center" style="margin-top:80px;">
+    <div class="col-lg-10">
+
+        <h4 style="text-align:center; color: black">Cursos</h4>
+        <br />
+
+        @if (@ViewBag.MsjPantalla != null)
+        {
+            <div style="text-align:center" class="alert alert-warning" role="alert">
+                @ViewBag.MsjPantalla
+            </div>
+        }
+
+        <div style="text-align:right">
+            <a href="@Url.Action("Agregar","Producto")" class="btn btn-primary" style="width:10%">Agregar</a>
+        </div>
+        <br />
+
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr style="text-align:center">
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    <th>Actualizar</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                        <td title="@item.Descripcion">@item.Descripcion</td>
+                        <td>@item.Cantidad</td>
+                        <td>@item.Precio</td>
+                        <td style="text-align:center"><img src="@item.Imagen" width="300" height="150" /></td>
+
+                        <td style="text-align:center">
+                            <a href="@Url.Action("Editar","Producto", new {q = item.IdProducto})"><i class="fa fa-pencil"></i></a>
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    </div>
+</div>

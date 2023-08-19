@@ -11,7 +11,7 @@ namespace ProyectoWebSpa.Controllers
     public class CarritoController : Controller
     {
         CarritoModel model = new CarritoModel();
-        ProductoModel modelCursos = new ProductoModel();
+        ProductoModel modelProductos = new ProductoModel();
 
         [HttpGet]
         public ActionResult AgregarCursoCarrito(long q)
@@ -34,9 +34,9 @@ namespace ProyectoWebSpa.Controllers
             }
             else
             {
-                var cursos = modelCursos.ConsultarCursos();
+                var productos = modelProductos.ConsultarProductos();
                 ViewBag.MsjPantalla = "No hay disponibilidad del producto en este momento";
-                return View("../Home/Inicio", cursos);
+                return View("../Home/Inicio", productos);
             }
         }
 
