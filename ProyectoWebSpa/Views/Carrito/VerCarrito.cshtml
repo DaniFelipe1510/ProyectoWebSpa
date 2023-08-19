@@ -35,8 +35,9 @@
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Precio</th>
-                    <th>Cantidad</th>
+                    <th></th>
                     <th>Remover</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -47,10 +48,19 @@
                         <td>@item.Nombre</td>
                         <td>@item.Descripcion</td>
                         <td>@Math.Round(item.Precio, 2)</td>
-                        <td>@Math.Round(item.CantidadArticulos, 0)</td>
-                        <td style="text-align:center">
-                            <a href="@Url.Action("RemoverCursoCarrito","Carrito", new { q = item.IdCarrito })"><i class="fa fa-trash"></i></a>
+                        @*<td>@Math.Round(item.CantidadArticulos, 0)</td>*@
+
+                        <td style=" width:20%">
+                            <div class="input-group quantity-container" style="width: 60%;">
+                                <span class="input-group-text">Cantidad:</span>
+                                <input type="number" class="form-control quantity-input" value="1" data-product-id="@item.CantidadArticulos" min="1">
+                            </div>
                         </td>
+                        <td style="text-align:center">
+                            <a href="@Url.Action("RemoverCursoCarrito","Carrito", new { q = item.IdCarrito })"><i class="fa fa-trash" style="color:red"></i></a>
+                        </td>
+
+
                     </tr>
                 }
 
@@ -61,10 +71,47 @@
 
         @using (Html.BeginForm("ConfirmarPago", "Carrito", FormMethod.Post))
         {
-            <p style="text-align: center; margin-top: 10vh; transform: translateY(-50%);">El monto a cancelar es de: $ @Math.Round(double.Parse(Session["SubTotalCursos"].ToString()), 2) IVI</p>
+            @*<p style="text-align: center; margin-top: 10vh; transform: translateY(-50%);">El monto a cancelar es de: $ @Math.Round(double.Parse(Session["SubTotalCursos"].ToString()), 2) IVI</p>*@
+            <p style="text-align: center; margin-top: 10vh; transform: translateY(-50%);">
+                El monto a cancelar es de: <span class="cart-total">$0.00</span> IVI
+            </p>
             <input style="display: block; margin: 0 auto;" type="submit" value="Procesar Pago" class="btn btn-success">
 
         }
 
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".quantity-input").on("input", function () {
+            var quantity = parseInt($(this).val());
+            var price = parseFloat($(this).closest("tr").find("td").eq(2).text().replace(",", ".")); // Replace , with .
+            var total = quantity * price;
+
+            $(this).closest("tr").find(".total-cell").text("$" + total.toFixed(2));
+
+            updateCartTotal();
+        });
+
+        function updateCartTotal() {
+            var cartTotal = 0;
+
+            $(".quantity-input").each(function () {
+                var quantity = parseInt($(this).val());
+                var price = parseFloat($(this).closest("tr").find("td").eq(2).text().replace(",", ".")); // Replace , with .
+                var total = quantity * price;
+
+                cartTotal += total;
+            });
+
+            // Update the cart total display
+            $(".cart-total").text("$" + cartTotal.toFixed(2));
+        }
+
+        updateCartTotal(); // Initialize cart total on page load
+    });
+</script>
+
