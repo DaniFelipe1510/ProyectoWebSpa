@@ -133,6 +133,26 @@ namespace ProyectoWebSpa.Controllers
         }
 
         [HttpGet]
+        public ActionResult VerCarrito()
+        {
+            ActualizarDatosSesion();
+
+
+
+            var productos = modelProductos.ConsultarProductos();
+            return View(productos);
+        }
+
+
+        public void ActualizarDatosSesion()
+        {
+            var datos = modelCarrito.ConsultarCursoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            Session["CantidadCursos"] = datos.Count();
+            Session["SubTotalCursos"] = datos.Sum(x => x.Precio);
+            Session["TotalCursos"] = datos.Sum(x => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
+        }
+
+        [HttpGet]
         public ActionResult CerrarSesion()
         {
             Session.Clear();

@@ -88,5 +88,28 @@ namespace ProyectoWebSpa.Models
                 return 0;
             }
         }
+
+        public int RemoverCursoCarrito(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/RemoverCursoCarrito?q=" + q;
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.DeleteAsync(url).Result;
+
+
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+                }
+
+
+
+                return 0;
+            }
+        }
     }
 }

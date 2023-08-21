@@ -28,5 +28,27 @@ namespace ProyectoWebSpa.Models
                 return new List<ServicioEnt>();
             }
         }
+
+        public long RegistrarServicio(ReservaEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/RegistrarServicio";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+                JsonContent body = JsonContent.Create(entidad);//Serializar
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+
+                HttpResponseMessage resp = client.PostAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<long>().Result;
+
+                }
+
+                return 0;
+            }
+        }
     }
 }

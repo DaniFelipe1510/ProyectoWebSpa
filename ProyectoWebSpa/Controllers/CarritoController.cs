@@ -63,5 +63,31 @@ namespace ProyectoWebSpa.Controllers
             model.PagarCursosCarrito(entidad);
             return RedirectToAction("VerMisProductos", "Carrito");
         }
+
+        [HttpGet]
+        public ActionResult RemoverCursoCarrito(long q)
+        {
+            var respuesta = model.RemoverCursoCarrito(q);
+            ActualizarDatosSesion();
+
+
+
+            if (respuesta > 0)
+            {
+                return RedirectToAction("VerCarrito", "Carrito");
+            }
+            else
+            {
+                ViewBag.MsjPantalla = "No se pudo remover el curso de su carrito";
+                return View("VerCarrito");
+            }
+        }
+        public void ActualizarDatosSesion()
+        {
+            var datos = model.ConsultarCursoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            Session["CantidadCursos"] = datos.Count();
+            Session["SubTotalCursos"] = datos.Sum(x => x.Precio);
+            Session["TotalCursos"] = datos.Sum(x => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
+        }
     }
 }
