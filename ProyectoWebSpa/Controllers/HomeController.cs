@@ -70,7 +70,7 @@ namespace ProyectoWebSpa.Controllers
                     Session["RolUsuario"] = resp.NombreRol;
                     Session["IdRolUsuario"] = resp.IdRol;
                     Session["TokenUsuario"] = resp.Token;
-
+                    
                     return RedirectToAction("Inicio", "Home");
                 }
                 else

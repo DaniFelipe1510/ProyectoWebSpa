@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ProyectoWebSpa.Entities.ServicioEnt>
+
+@{
+    ViewBag.Title = "ConsultarServicios";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+<h2 style="font-weight:bold; text-align:center;">Sección para reservar un servicio.</h2>
+
+
+<div class="row" style="margin-top:80px;">
+    @if (ViewBag.MsjPantalla != null)
+    {
+        <div style="text-align:center" class="alert alert-warning" role="alert">
+            @ViewBag.MsjPantalla
+        </div>
+    }
+
+
+    <section class="page-section bg-light" id="portfolio">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link passDatos" data-bs-toggle="modal" href="#portfolioModal1" data-name="@item.Nombre"
+                               data-desc="@item.Descripcion"
+                               data-duracion="Duración: @item.Duracion"
+                               data-precio="Precio: $ @item.Precio"
+                               data-Imagen="@item.Imagen">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="@item.Imagen" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">@item.Nombre</div>
+                                <a href="@Url.Action("AgregarCursoCarrito", "Carrito", new { q = item.IdServicio })" type="button" class="btn btn-primary btn-xl text-uppercase">Reservar</a>
+                                <div class="portfolio-caption-subheading text-muted"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                }
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="~/WebStyles/assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <!-- Project details-->
+                            <h2 class="text-uppercase" id="pTitulo"></h2>
+                            <h4 class="item-intro text-muted" id="txtDesc"></h4>
+                            <h4 class="item-intro text-muted" id="txtDuracion"></h4>
+                            <h3 id="txtPrecio"></h3>
+                            <img class="img-fluid d-block mx-auto" src="" alt="..." id="imgPreview" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+    $(".passDatos").click(function () {
+        $("#pTitulo").text($(this).attr('data-name'));
+        $("#txtDesc").text($(this).attr('data-desc'));
+        var imageUrl = $(this).attr('data-Imagen');
+        $("#imgPreview").attr('src', imageUrl);
+        $("#txtPrecio").text($(this).attr('data-precio'));
+        $("#txtDuracion").text($(this).attr('data-duracion'));
+    })
+
+
+</script>
+

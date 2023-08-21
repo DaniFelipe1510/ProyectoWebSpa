@@ -18,5 +18,7 @@ namespace ProyectoWebSpa.Entities
         public int IdRol { get; set; }
 
         public string Token { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 }
