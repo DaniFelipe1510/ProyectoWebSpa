@@ -8,8 +8,8 @@ namespace ProyectoWebSpa.Controllers
 {
     public class ReservaController : Controller
     {
-        // GET: Reserva
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult AgregarReserva()
         {
             return View();
         }
