@@ -39,12 +39,12 @@
 
                     </div>
                     <div class="form-group">
-                        @Html.TextBoxFor(m => m.Contrasenna, new { @type = "password", @placeholder = "Contraseña", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Contrasenna, new { @type = "password", @id = "password-field", @placeholder = "Contraseña", @class = "form-control" })
 
                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     </div>
                     <div class="form-group">
-                        @Html.TextBoxFor(m => m.Confirmarcontrasenna, new { @type = "password", @placeholder = "ConfirmarContraseña", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Confirmarcontrasenna, new { @type = "password", @id = "password-field",@placeholder = "ConfirmarContraseña", @class = "form-control" })
 
                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     </div>
@@ -52,13 +52,13 @@
                         <button type="submit" class="form-control btn btn-primary submit px-3">Registrarse</button>
                     </div>
                     <div class="form-group d-md-flex">
-                        <div class="w-50">
+                        @*<div class="w-50">
                             <label class="checkbox-wrap checkbox-primary">
                                 Acordarme de mi
                                 <input type="checkbox" checked>
                                 <span class="checkmark"></span>
                             </label>
-                        </div>
+                        </div>*@
 
                     </div>
                 </form>

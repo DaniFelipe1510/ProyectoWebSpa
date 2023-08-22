@@ -203,8 +203,10 @@ namespace ProyectoWebSpa.Models
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/CambiarContrasenna";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
                 JsonContent body = JsonContent.Create(entidad);//Serializar
 
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                 HttpResponseMessage resp = client.PutAsync(url, body).Result;
 
                 if (resp.IsSuccessStatusCode)

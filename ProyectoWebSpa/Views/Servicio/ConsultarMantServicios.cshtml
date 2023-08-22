@@ -40,8 +40,8 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td title="@item.Descripcion">@item.Nombre</td>
-                        <td title="@item.Descripcion">@item.Descripcion.Substring(0, 70) ...</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Descripcion</td>
                         <td>@item.Duracion</td>
                         <td>@item.Precio</td>
                         <td style="text-align:center"><img src="@item.Imagen" width="300" height="150" /></td>

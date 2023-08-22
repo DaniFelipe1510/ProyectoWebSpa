@@ -168,43 +168,43 @@ namespace ProyectoWebSpa.Controllers
         [HttpPost]
         public ActionResult CambiarContrasenna(UsuarioEnt entidad)
         {
-            entidad.IdUsuario = long.Parse(Session["IdUusario"].ToString());
             entidad.Correo = Session["CorreoUsuario"].ToString();
+            entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
             entidad.Contrasenna = model.Encrypt(entidad.Contrasenna);
+            entidad.ContrasennaNueva = model.Encrypt(entidad.ContrasennaNueva);
+            entidad.Confirmarcontrasenna = model.Encrypt(entidad.Confirmarcontrasenna);
             var respValidar = model.IniciarSesion(entidad);
-
-            //La contrasenna no es valida
+            //La contraseña actual si es válida
             if (respValidar == null)
             {
-                ViewBag.MsjPantalla = "Su contraseña actual no es la correcta";
+                ViewBag.MsjPantalla = "Su contraseña actual no es correcta";
                 return View("Cambiar");
 
             }
-
             if (entidad.ContrasennaNueva != entidad.Confirmarcontrasenna)
             {
                 ViewBag.MsjPantalla = "Las contraseñas no coinciden";
                 return View("Cambiar");
             }
-
             if (entidad.ContrasennaNueva == entidad.Contrasenna)
             {
-                ViewBag.MsjPantalla = "Debe ingresar una contraseña diferente a la acutal";
+                ViewBag.MsjPantalla = "Debe ingresar una contraseña diferente a la utilizada actualmente";
                 return View("Cambiar");
             }
-
-            entidad.ContrasennaNueva = model.Encrypt(entidad.ContrasennaNueva);
 
             var respCambiar = model.CambiarContrasenna(entidad);
 
             if (respCambiar > 0)
-                return RedirectToAction("Index", "Home");
+            {
+                return RedirectToAction("Inicio", "Home");
+            }
+
             else
             {
                 ViewBag.MsjPantalla = "No se ha podido cambiar su contraseña";
                 return View("Cambiar");
             }
-        }
+        } 
 
 
 

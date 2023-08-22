@@ -35,23 +35,23 @@ namespace ProyectoWebSpa.Controllers
         }
 
         [HttpPost]
-        public ActionResult AgregarServicio(ServicioEnt entidad, HttpPostedFileBase ImagenCurso)
+        public ActionResult AgregarServicio(ServicioEnt entidad, HttpPostedFileBase Imagen)
         {
             //Registramos el curso sin imagen, para obtner el IDCurso
             entidad.Imagen = string.Empty;
             var resp = modelServicios.RegistrarMantServicio(entidad);
 
             //Guardamos la imagen en una carpeta del proyecto, con el IDCurso correspondiente
-            string extension = Path.GetExtension(Path.GetFileName(ImagenCurso.FileName));
+            string extension = Path.GetExtension(Path.GetFileName(Imagen.FileName));
             string ruta = ConfigurationManager.AppSettings["rutaMoverImagenes"] + resp + extension;
-            ImagenCurso.SaveAs(ruta);
+            Imagen.SaveAs(ruta);
 
             //Actualizamos el curso para ponerle la ruta de donde guardamos la imagenn
             entidad.Imagen = ConfigurationManager.AppSettings["rutaGuardarImagenes"] + resp + extension;
             entidad.IdServicio = resp;
             modelServicios.ActualizarRuta(entidad);
 
-            return RedirectToAction("ConsultarMantCursos", "Curso");
+            return RedirectToAction("ConsultarMantServicios", "Servicio");
         }
 
         [HttpGet]
@@ -85,7 +85,7 @@ namespace ProyectoWebSpa.Controllers
                 entidad.Imagen = ConfigurationManager.AppSettings["rutaGuardarImagenes"] + entidad.IdServicio + extension;
                 modelServicios.ActualizarRuta(entidad);
 
-                return RedirectToAction("ConsultarMantCursos", "Curso");
+                return RedirectToAction("ConsultarMantServicios", "Servicio");
             }
             else
             {
