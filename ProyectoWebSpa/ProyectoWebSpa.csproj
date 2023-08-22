@@ -308,6 +308,9 @@
     <Content Include="Views\Reserva\AgregarReserva.cshtml" />
     <Content Include="Views\Home\Cambiar.cshtml" />
     <Content Include="Views\Reserva\VerMisReservas.cshtml" />
+    <Content Include="Views\Servicio\Agregar.cshtml" />
+    <Content Include="Views\Servicio\Editar.cshtml" />
+    <Content Include="Views\Servicio\ConsultarMantServicios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

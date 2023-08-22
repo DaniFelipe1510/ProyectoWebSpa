@@ -18,7 +18,7 @@ namespace ProyectoWebSpa.Models
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarServicios";
                 string token = HttpContext.Current.Session["TokenUsuario"].ToString();
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                HttpResponseMessage resp = client.GetAsync(url).Result;
+                HttpResponseMessage resp = client.GetAsync(url).Result; 
 
                 if (resp.IsSuccessStatusCode)
                 {
@@ -86,6 +86,65 @@ namespace ProyectoWebSpa.Models
                 }
 
                 return 0;
+            }
+        }
+
+        public long RegistrarMantServicio(ServicioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/RegistrarMantServicio";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+                JsonContent body = JsonContent.Create(entidad);//Serializar
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+
+                HttpResponseMessage resp = client.PostAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<long>().Result;
+
+                }
+
+                return 0;
+            }
+        }
+
+        public int ActualizarServicio(ServicioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ActualizarServicio";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+                JsonContent body = JsonContent.Create(entidad);//Serializar
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+
+                HttpResponseMessage resp = client.PutAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+
+                }
+
+                return 0;
+            }
+        }
+
+        public void ActualizarRuta(ServicioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ActualizarRuta";
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+                JsonContent body = JsonContent.Create(entidad);//Serializar
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+
+                HttpResponseMessage resp = client.PutAsync(url, body).Result;
+
             }
         }
     }

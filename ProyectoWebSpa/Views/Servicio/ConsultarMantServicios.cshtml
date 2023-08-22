@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ProyectoWebSpa.Entities.ServicioEnt>
+
+@{
+    ViewBag.Title = "ConsultarMantServicios";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+<div class="row justify-content-center" style="margin-top:80px;">
+    <div class="col-lg-10">
+
+        <h4 style="text-align:center; color: black">Servicios</h4>
+        <br />
+
+        @if (@ViewBag.MsjPantalla != null)
+        {
+            <div style="text-align:center" class="alert alert-warning" role="alert">
+                @ViewBag.MsjPantalla
+            </div>
+        }
+
+        <div style="text-align:right">
+            <a href="@Url.Action("Agregar","Servicio")" class="btn btn-primary" style="width:10%">Agregar</a>
+        </div>
+        <br />
+
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr style="text-align:center">
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Duración</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    <th>Actualizar</th>
+                    @*<th>Cambiar Estado</th>*@
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td title="@item.Descripcion">@item.Nombre</td>
+                        <td title="@item.Descripcion">@item.Descripcion.Substring(0, 70) ...</td>
+                        <td>@item.Duracion</td>
+                        <td>@item.Precio</td>
+                        <td style="text-align:center"><img src="@item.Imagen" width="300" height="150" /></td>
+                        
+
+                        <td style="text-align:center">
+                            <a href="@Url.Action("Editar","Servicio", new {q = item.IdServicio})"><i class="fa fa-pencil"></i></a>
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+

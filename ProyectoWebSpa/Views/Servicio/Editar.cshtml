@@ -1,0 +1,66 @@
+﻿@model ProyectoWebSpa.Entities.ServicioEnt
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@using (Html.BeginForm("EditarServicio", "Servicio", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="row justify-content-center" style="margin-top:80px;">
+        <div class="col-lg-5">
+
+            <h4 style="text-align:center; color: black">Editar Información</h4>
+            <br />
+
+            @if (@ViewBag.MsjPantalla != null)
+            {
+                <div style="text-align:center" class="alert alert-warning" role="alert">
+                    @ViewBag.MsjPantalla
+                </div>
+            }
+            <div class="card-body">
+
+                @Html.HiddenFor(m => m.IdServicio)
+                <div class="form-floating mb-3">
+                    @Html.TextBoxFor(m => m.Nombre, new { @type = "text", @placeholder = "Nombre", @class = "form-control" })
+                    <label for="inputFirstName">Nombre</label>
+                </div>
+                <div class="form-floating mb-3">
+                    @Html.TextAreaFor(m => m.Descripcion, new { @style = "height:200px", @type = "text", @placeholder = "Descripcion", @class = "form-control" })
+                    <label for="inputDescripción">Descripción</label>
+                </div>
+                <div class="form-floating mb-3">
+                    @Html.TextBoxFor(m => m.Duracion, new { @type = "text", @placeholder = "Duracion", @class = "form-control" })
+                    <label for="inputDuracion">Duracion</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span style="height:60px" class="input-group-text">$</span>
+                        </div>
+                        @Html.TextBoxFor(m => m.Precio, new { @placeholder = "Precio", @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="file" id="ImagenCurso" name="ImagenCurso" class="form-control" accept="image/png, image/jpeg, image/jpg" />
+                </div>
+
+                <div class="form-floating mb-3">
+                    @Html.TextBoxFor(m => m.Imagen, new { @type = "text", @readOnly = "readOnly", @placeholder = "Imagen", @class = "form-control", @style = "background-color:#C2C1C0" })
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                    <a class="small"></a>
+                    <button class="btn btn-primary" type="submit">Procesar</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+}
+
