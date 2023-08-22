@@ -37,7 +37,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">@item.Nombre</div>
-                                <a href="@Url.Action("AgregarReserva", "Reserva", new { q = item.IdServicio })" type="button" class="btn btn-primary btn-xl text-uppercase">Reservar</a>
+                                <a href="@Url.Action("AgregarReserva", "Reserva", new { q = item.IdServicio, precioServicio = item.Precio })" type="button" class="btn btn-primary btn-xl text-uppercase">Reservar</a>
                                 <div class="portfolio-caption-subheading text-muted"></div>
                             </div>
                         </div>

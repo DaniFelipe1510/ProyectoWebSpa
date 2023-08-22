@@ -29,6 +29,44 @@ namespace ProyectoWebSpa.Models
             }
         }
 
+        public ServicioEnt ConsultarServicio(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarServicio?q=" + q;
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<ServicioEnt>().Result;
+
+                }
+                return null;
+            }
+
+        }
+
+        public List<ReservaEnt> ConsultarMisReservas(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarMisReservas?q=" + q;
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<List<ReservaEnt>>().Result;
+                }
+
+                return new List<ReservaEnt>();
+            }
+        }
         public long RegistrarServicio(ReservaEnt entidad)
         {
             using (var client = new HttpClient())

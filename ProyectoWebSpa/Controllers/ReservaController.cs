@@ -12,17 +12,21 @@ namespace ProyectoWebSpa.Controllers
     {
         ServicioModel model = new ServicioModel();
         [HttpGet]
-        public ActionResult AgregarReserva()
+        public ActionResult AgregarReserva(long q, decimal precioServicio)
         {
-            return View();
+            ReservaEnt entidad = new ReservaEnt();
+            entidad.IdServicio = q;
+            entidad.PrecioPago = precioServicio;
+    
+            return View(entidad);
         }
 
         [HttpPost]
-        public ActionResult RegistrarReserva(long q)
+        public ActionResult RegistrarReserva(ReservaEnt entidad)
         {
-            ReservaEnt entidad = new ReservaEnt();
-                entidad.IdServicio = q;
-                var resp = model.RegistrarServicio(entidad);
+
+            entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
+            var resp = model.RegistrarServicio(entidad);
                 //ActualizarDatosSesion();
 
                 if (resp > 0)
@@ -36,7 +40,14 @@ namespace ProyectoWebSpa.Controllers
             
         }
 
-        
+        [HttpGet]
+        public ActionResult VerMisReservas()
+        {
+            var datos = model.ConsultarMisReservas(long.Parse(Session["IdUsuario"].ToString()));
+            return View(datos);
+        }
+
+
         //public void ActualizarDatosSesion()
         //{
         //    var datos = model.RegistrarServicio();

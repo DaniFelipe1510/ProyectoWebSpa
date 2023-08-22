@@ -17,6 +17,7 @@ namespace ProyectoWebSpa.Controllers
         public ActionResult AgregarCursoCarrito(long q)
         {
             CarritoEnt entidad = new CarritoEnt();
+
             entidad.FechaCarrito = DateTime.Now;
             entidad.IdProducto = q;
             entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
@@ -57,11 +58,12 @@ namespace ProyectoWebSpa.Controllers
         [HttpPost]
         public ActionResult ConfirmarPago()
         {
+
             CarritoEnt entidad = new CarritoEnt();
             entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
 
             model.PagarCursosCarrito(entidad);
-            return RedirectToAction("VerMisProductos", "Carrito");
+            return RedirectToAction("Inicio", "Home");
         }
 
         [HttpGet]

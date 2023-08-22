@@ -31,7 +31,17 @@
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("Inicio","Home")">Productos</a></li>
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("ConsultarServicios","Servicio")">Reservar</a></li>
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("VerCarrito","Carrito")">Pagar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="@Url.Action("VerMisProductos","Carrito")">Historial</a></li>
+                    @*<li class="nav-item"><a class="nav-link" href="@Url.Action("VerMisProductos","Carrito")">Historial</a></li>*@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Historial
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="@Url.Action("VerMisProductos", "Carrito")">Mis productos</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("VerMisReservas", "Reserva")">Mis reservaciones</a></li>
+                          
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("Perfil","Home")">Perfil</a></li>
                     @if (Session["IdRolUsuario"].ToString() == "1")
                     {
@@ -55,7 +65,7 @@
 
                   
                         <i class="fa fa-cart-plus fa-lg"></i>@Session["CantidadCursos"].ToString()
-                        @*<i class="fa fa-comments-dollar fa-lg "></i> @Session["SubTotalCursos"].ToString()*@
+                        <i class="fa fa-comments-dollar fa-lg "></i> @Session["SubTotalCursos"].ToString()
  
                 </button> 
                 
