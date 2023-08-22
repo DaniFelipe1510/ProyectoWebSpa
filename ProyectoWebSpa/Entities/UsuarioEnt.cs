@@ -13,6 +13,7 @@ namespace ProyectoWebSpa.Entities
         public string Correo { get; set; }
         public string Contrasenna { get; set; }
         public string Confirmarcontrasenna { get; set; }
+        public string ContrasennaNueva { get; set; }
         public string NombreRol { get; set; }
         public bool Estado { get; set; }
         public int IdRol { get; set; }
